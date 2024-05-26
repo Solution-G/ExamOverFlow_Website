@@ -29,7 +29,7 @@
             </a>
 
 
-            <form action="search.html" method="post" class="search-form">
+            <form action="search.php" method="post" class="search-form">
                 <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
                 <button type="submit" class="fas fa-search"></button>
             </form>
@@ -54,15 +54,15 @@
             <img src="images/pic-1.jpg" class="image" alt="">
             <h3 class="name">Akrem</h3>
             <p class="role">student</p>
-            <a href="profile.html" class="btn">view profile</a>
+            <a href="profile.php" class="btn">view profile</a>
 
         </div>
 
         <nav class="navbar">
 
-            <a href="about.html"><i class="fas fa-question"></i><span>about</span></a>
-            <a href="contact.html"><i class="fas fa-headset"></i><span>contact</span></a>
-            <a href="login.html"><i class="fa-solid fa-right-from-bracket"></i> </i><span>Log out</span></a>
+            <a href="about.php"><i class="fas fa-question"></i><span>about</span></a>
+            <a href="contact.php"><i class="fas fa-headset"></i><span>contact</span></a>
+            <a href="login.php"><i class="fa-solid fa-right-from-bracket"></i> </i><span>Log out</span></a>
         </nav>
 
     </div>
@@ -92,7 +92,7 @@
 
                 </div>
 
-                <a href="material.html" class="inline-btn">material</a>
+                <a href="material.php" class="inline-btn">material</a>
             </div>
 
             <div class="box">
@@ -111,7 +111,7 @@
 
                 </div>
 
-                <a href="playlist.html" class="inline-btn">Exam</a>
+                <a href="Exam.php" class="inline-btn">Exam</a>
             </div>
             <div class="box">
 

@@ -454,6 +454,85 @@ section {
     left: -30rem;
 }
 
+/* material page */
+.material .box-container {
+
+    grid-template-columns: repeat(auto-fit, 27.5rem);
+    gap: 3.5rem;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 25px;
+
+}
+
+.material .box-container .box {
+    background-color: var(--white);
+    border-radius: .5rem;
+    padding: 2rem;
+}
+
+.material .box-container .box .title {
+    font-size: 2rem;
+    color: var(--black);
+    text-transform: capitalize;
+}
+
+.material .box-container .box .flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.material .box-container .flex a {
+    background-color: var(--light-bg);
+    border-radius: .5rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.5rem;
+}
+
+.material .box-container .flex a i {
+    margin-right: 1rem;
+    color: var(--black);
+}
+
+.material .box-container .flex a span {
+    color: var(--light-color);
+}
+
+.material .box-container .flex a:hover {
+    background-color: var(--black);
+}
+
+.material .box-container .flex a:hover span {
+    color: var(--white);
+}
+
+.material .box-container .flex a:hover i {
+    color: var(--white);
+}
+
+.material .box-container .tutor {
+    padding: 1rem 0;
+    font-size: 1.8rem;
+    color: var(--light-color);
+    line-height: 2;
+}
+
+.material .box-container .likes {
+    color: var(--light-color);
+    font-size: 1.7rem;
+    margin-top: 1.5rem;
+}
+
+.material .box-container .likes span {
+    color: var(--main-color);
+}
+
+
+
+
+/* home grid */
 .home-grid .box-container {
 
     grid-template-columns: repeat(auto-fit, 27.5rem);
@@ -924,6 +1003,10 @@ section {
     }
 
     .home-grid .box-container {
+        grid-template-columns: 1fr;
+    }
+
+    .material .box-container {
         grid-template-columns: 1fr;
     }
 

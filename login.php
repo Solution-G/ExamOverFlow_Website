@@ -40,12 +40,12 @@
             <p>your password <span>*</span></p>
             <input type="password" name="pass" placeholder="enter your password" required maxlength="20" class="box">
             <input type="submit" value="login new" name="submit" class="btn">
-            <p> <a href="forgot_account.html" class="Forget_account" style=" left:0%; color:#888;">Forgot
+            <p> <a href="forgot_account.php" class="Forget_account" style=" left:0%; color:#888;">Forgot
                     Account
                     ?</a>
             </p>
 
-            <p>Don't have an Account ?<a href="register.html"
+            <p>Don't have an Account ?<a href="register.php"
                     style="display: inline-block; white-space: nowrap; padding: 15px 85px; margin-left:30px;margin-top:20px; font-size: 16px; text-decoration: none; color: #fff; background-color: #007bff; border: none; border-radius: 5px; cursor: pointer;">register</a>
             </p>
         </form>

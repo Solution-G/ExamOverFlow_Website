@@ -18,8 +18,8 @@
     <div class="container">
         <header class="header">
             <div class="flex">
-                <a href="home.html" class="logo">Examoverflow</a>
-                <form action="search.html" method="post" class="search-form">
+                <a href="home.html" class="logo">Exam Overflow</a>
+                <form action="search.php" method="post" class="search-form">
                     <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
                     <button type="submit" class="fas fa-search"></button>
                 </form>
@@ -40,8 +40,8 @@
                     environment and facilitating the exchange of knowledge and insights.</p>
             </div>
             <div class="buttons-container">
-                <a href="login.html" class="button">Login</a>
-                <a href="register.html" class="button">Register</a>
+                <a href="login.php" class="button">Login</a>
+                <a href="register.php" class="button">Register</a>
             </div>
         </div>
     </div>
