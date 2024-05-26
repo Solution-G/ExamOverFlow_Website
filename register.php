@@ -50,6 +50,7 @@ if(isset($_POST['submit'])){
          $verify_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? AND password = ? LIMIT 1");
          $verify_user->execute([$email, $pass]);
          $row = $verify_user->fetch(PDO::FETCH_ASSOC);
+         $message[] = 'user already exist';
          
          if($verify_user->rowCount() > 0){
             setcookie('user_id', $row['id'], time() + 60*60*24*30, '/');

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header('location:login.php');
+    header('location:main_page.php');
     exit();
 }
 ?>
@@ -71,7 +71,7 @@ if (!isset($_SESSION['user_id'])) {
 
             <a href="about.php"><i class="fas fa-question"></i><span>about</span></a>
             <a href="contact.php"><i class="fas fa-headset"></i><span>contact</span></a>
-            <a href="login.php"><i class="fa-solid fa-right-from-bracket"></i> </i><span>Log out</span></a>
+            <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> </i><span>Log out</span></a>
         </nav>
 
     </div>
