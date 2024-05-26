@@ -1,5 +1,12 @@
 <?php
 session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('location:main_page.php');
+    exit();
+}
+
+
+
 include 'db_connection.php';
 
 if(isset($_COOKIE['user_id'])){
