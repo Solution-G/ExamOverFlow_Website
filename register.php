@@ -53,7 +53,7 @@ if(isset($_POST['submit'])){
          
          if($verify_user->rowCount() > 0){
             setcookie('user_id', $row['id'], time() + 60*60*24*30, '/');
-            header('location:home.php');
+            header('location:login.php');
          }
       }
    }
@@ -124,7 +124,9 @@ if(isset($_POST['submit'])){
             <p>Select Profile <span>*</span></p>
             <input type="file" name="image" accept="image/*" required class="box">
             <input type="submit" value="Register" name="submit" class="btn">
-            <p>Have an account? <a href="login.php" class="btn">Login</a></p>
+            <p>You have an Account ?<a href="login.php"
+                    style="display: inline-block; white-space: nowrap; padding: 15px 85px; margin-left:85px;margin-top:20px; font-size: 16px; text-decoration: none; color: #fff; background-color: #007bff; border: none; border-radius: 5px; cursor: pointer;">Login</a>
+            </p>
         </form>
     </section>
 
