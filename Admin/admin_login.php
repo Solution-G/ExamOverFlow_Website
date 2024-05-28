@@ -37,7 +37,7 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="../css/admin_style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
@@ -56,8 +56,14 @@ if(isset($message)){
 }
 ?>
 
-    <!-- register section starts  -->
-
+    <header class="header">
+        <section class="flex">
+            <a href="register.php" class="logo">Exam Overflow</a>
+            <div class="icons">
+                <div id="toggle-btn" class="fas fa-sun"></div>
+            </div>
+        </section>
+    </header>
     <section class="form-container">
 
         <form action="" method="post" enctype="multipart/form-data" class="login">
@@ -73,6 +79,10 @@ if(isset($message)){
     </section>
 
     <!-- registe section ends -->
+
+
+    <script src="../js/script.js"></script>
+
 
 </body>
 

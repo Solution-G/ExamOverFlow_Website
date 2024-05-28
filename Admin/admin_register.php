@@ -55,7 +55,7 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="../css/admin_style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
@@ -74,6 +74,14 @@ if(isset($message)){
 }
 ?>
 
+    <header class="header">
+        <section class="flex">
+            <a href="register.php" class="logo">Exam Overflow</a>
+            <div class="icons">
+                <div id="toggle-btn" class="fas fa-sun"></div>
+            </div>
+        </section>
+    </header>
     <!-- register section starts  -->
 
     <section class="form-container">
@@ -83,7 +91,7 @@ if(isset($message)){
             <div class="flex">
                 <div class="col">
                     <p>your name <span>*</span></p>
-                    <input type="text" name="name" placeholder="eneter your name" maxlength="50" required class="box">
+                    <input type="text" name="name" placeholder="enter your name" maxlength="50" required class="box">
                     <p>your email <span>*</span></p>
                     <input type="email" name="email" placeholder="enter your email" maxlength="20" required class="box">
                 </div>
@@ -106,37 +114,8 @@ if(isset($message)){
 
     <!-- registe section ends -->
 
+    <script src="../js/script.js"></script>
 
-
-
-
-
-
-
-
-
-
-
-    <script>
-    let darkMode = localStorage.getItem('dark-mode');
-    let body = document.body;
-
-    const enabelDarkMode = () => {
-        body.classList.add('dark');
-        localStorage.setItem('dark-mode', 'enabled');
-    }
-
-    const disableDarkMode = () => {
-        body.classList.remove('dark');
-        localStorage.setItem('dark-mode', 'disabled');
-    }
-
-    if (darkMode === 'enabled') {
-        enabelDarkMode();
-    } else {
-        disableDarkMode();
-    }
-    </script>
 
 </body>
 

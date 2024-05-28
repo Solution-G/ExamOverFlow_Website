@@ -19,8 +19,17 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS `admin` (
     `id` VARCHAR(50) PRIMARY KEY,
     `name` VARCHAR(100) NOT NULL,
-    `profession` VARCHAR(100) NOT NULL,
     `email` VARCHAR(100) NOT NULL UNIQUE,
     `password` VARCHAR(255) NOT NULL,
     `image` VARCHAR(255) NOT NULL
 );
+-- Dumping data for table `admin`
+-- pass = admin
+INSERT INTO `admin` (`id`, `name`, `email`, `password`, `image`)
+VALUES (
+        'xUcccfAXFF0swLSkKCc9',
+        'Admin',
+        'admin@gmail.com',
+        'd033e22ae348aeb5660fc2140aec35850c4da997',
+        'TuA7B1b5SU7drnPFCTNV.jpg'
+    );
