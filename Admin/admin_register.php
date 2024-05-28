@@ -7,8 +7,6 @@ if(isset($_POST['submit'])){
    $id = unique_id();
    $name = $_POST['name'];
    $name = filter_var($name, FILTER_SANITIZE_STRING);
-   $profession = $_POST['profession'];
-   $profession = filter_var($profession, FILTER_SANITIZE_STRING);
    $email = $_POST['email'];
    $email = filter_var($email, FILTER_SANITIZE_STRING);
    $pass = sha1($_POST['pass']);
@@ -33,8 +31,8 @@ if(isset($_POST['submit'])){
       if($pass != $cpass){
          $message[] = 'confirm passowrd not matched!';
       }else{
-         $insert_tutor = $conn->prepare("INSERT INTO `admin`(id, name, profession, email, password, image) VALUES(?,?,?,?,?,?)");
-         $insert_tutor->execute([$id, $name, $profession, $email, $cpass, $rename]);
+         $insert_tutor = $conn->prepare("INSERT INTO `admin`(id, name,  email, password, image) VALUES(?,?,?,?,?)");
+         $insert_tutor->execute([$id, $name, $email, $cpass, $rename]);
          move_uploaded_file($image_tmp_name, $image_folder);
          $message[] = 'new Admin registered! please login now';
       }
@@ -51,7 +49,7 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>register</title>
+    <title>Admin registration </title>
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -86,21 +84,6 @@ if(isset($message)){
                 <div class="col">
                     <p>your name <span>*</span></p>
                     <input type="text" name="name" placeholder="eneter your name" maxlength="50" required class="box">
-                    <p>your profession <span>*</span></p>
-                    <select name="profession" class="box" required>
-                        <option value="" disabled selected>-- select your profession</option>
-                        <option value="developer">developer</option>
-                        <option value="desginer">desginer</option>
-                        <option value="musician">musician</option>
-                        <option value="biologist">biologist</option>
-                        <option value="teacher">teacher</option>
-                        <option value="engineer">engineer</option>
-                        <option value="lawyer">lawyer</option>
-                        <option value="accountant">accountant</option>
-                        <option value="doctor">doctor</option>
-                        <option value="journalist">journalist</option>
-                        <option value="photographer">photographer</option>
-                    </select>
                     <p>your email <span>*</span></p>
                     <input type="email" name="email" placeholder="enter your email" maxlength="20" required class="box">
                 </div>
@@ -115,7 +98,7 @@ if(isset($message)){
                     <input type="file" name="image" accept="image/*" required class="box">
                 </div>
             </div>
-            <p class="link">already have an account? <a href="login.php">login now</a></p>
+            <p class="link">already have an account? <a href="admin_login.php">login now</a></p>
             <input type="submit" name="submit" value="register now" class="btn">
         </form>
 
