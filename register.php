@@ -78,12 +78,12 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="css/style.css">
 
 
-    <!-- <script>
+    <script>
     function validateForm() {
 
         var email = document.forms["form"]["email"].value;
         var password = document.forms["form"]["pass"].value;
-
+        var cpassword = document.forms["form"]["c_pass"].value;
 
 
 
@@ -112,7 +112,7 @@ if (isset($_POST['submit'])) {
 
         return true;
     }
-    </script> -->
+    </script>
 
 </head>
 

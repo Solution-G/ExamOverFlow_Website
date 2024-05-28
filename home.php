@@ -1,9 +1,30 @@
 <?php
+include 'db_connection.php';
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header('location:main_page.php');
     exit();
 }
+
+
+if(isset($_COOKIE['user_id'])){
+   $user_id = $_COOKIE['user_id'];
+}else{
+   $user_id = '';
+}
+
+
+if(isset($message)){
+   foreach($message as $message){
+      echo '
+      <div class="message">
+         <span>'.$message.'</span>
+         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+      </div>
+      ';
+   }
+}
+
 ?>
 
 
@@ -27,6 +48,7 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
 
+
     <header class="header">
 
         <section class="flex">
@@ -38,7 +60,7 @@ if (!isset($_SESSION['user_id'])) {
             </a>
 
 
-            <form action="search.php" method="post" class="search-form">
+            <form action="search.html" method="post" class="search-form">
                 <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
                 <button type="submit" class="fas fa-search"></button>
             </form>
@@ -60,10 +82,19 @@ if (!isset($_SESSION['user_id'])) {
         </div>
 
         <div class="profile">
-            <img src="images/pic-1.jpg" class="image" alt="">
-            <h3 class="name">Akrem</h3>
-            <p class="role">student</p>
+            <?php
+            $select_profile = $conn->prepare("SELECT * FROM `users` WHERE id = ?");
+            $select_profile->execute([$user_id]);
+            if($select_profile->rowCount() > 0){
+            $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
+         ?>
+            <img src="uploaded_files/<?= $fetch_profile['image']; ?>" class="image" alt="">
+            <h3 class="name"><?= $fetch_profile['name']; ?></h3>
+            <p class="role ">student </p>
             <a href="profile.php" class="btn">view profile</a>
+            <?php
+            }
+         ?>
 
         </div>
 
@@ -71,7 +102,7 @@ if (!isset($_SESSION['user_id'])) {
 
             <a href="about.php"><i class="fas fa-question"></i><span>about</span></a>
             <a href="contact.php"><i class="fas fa-headset"></i><span>contact</span></a>
-            <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> </i><span>Log out</span></a>
+            <a href="login.php"><i class="fa-solid fa-right-from-bracket"></i> </i><span>Log out</span></a>
         </nav>
 
     </div>
