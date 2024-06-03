@@ -18,6 +18,29 @@ if (isset($message)) {
     }
 }
 
+$selected_grade = isset($_POST['grade']) ? $_POST['grade'] : '';
+$selected_subject = isset($_POST['subject']) ? $_POST['subject'] : '';
+
+$query = "SELECT * FROM `materials` WHERE 1";
+$params = [];
+
+if ($selected_grade != '') {
+    $query .= " AND grade = ?";
+    $params[] = $selected_grade;
+}
+
+
+if ($selected_subject != '') {
+    $query .= " AND name LIKE ?";
+    $params[] = $selected_subject . '%';
+}
+if ($selected_subject != '') {
+    $query .= " AND name = ?";
+    $params[] = $selected_subject;
+}
+
+$select_courses = $conn->prepare($query);
+$select_courses->execute($params);
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +53,32 @@ if (isset($message)) {
     <title>Materials</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+    .filter-form {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        gap: 10px;
+    }
+
+    .filter-form select,
+    .filter-form button {
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    .filter-form button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .filter-form button:hover {
+        background-color: #0056b3;
+    }
+    </style>
 </head>
 
 <body>
@@ -74,10 +123,28 @@ if (isset($message)) {
     </div>
 
     <section class="material">
+        <form action="" method="post" class="filter-form">
+            <select name="grade">
+                <option value="">Select Grade</option>
+                <option value="9" <?= $selected_grade == '9' ? 'selected' : '' ?>>Grade 9</option>
+                <option value="10" <?= $selected_grade == '10' ? 'selected' : '' ?>>Grade 10</option>
+                <option value="11" <?= $selected_grade == '11' ? 'selected' : '' ?>>Grade 11</option>
+                <option value="12" <?= $selected_grade == '12' ? 'selected' : '' ?>>Grade 12</option>
+            </select>
+            <select name="subject">
+                <option value="">Select Subject</option>
+                <option value="Mathematics" <?= $selected_subject == 'Mathematics' ? 'selected' : '' ?>>Mathematics
+                </option>
+                <option value="Biology" <?= $selected_subject == 'Biology' ? 'selected' : '' ?>>Biology</option>
+                <option value="Chemistry" <?= $selected_subject == 'Chemistry' ? 'selected' : '' ?>>Chemistry</option>
+                <option value="Physics" <?= $selected_subject == 'Physics' ? 'selected' : '' ?>>Physics</option>
+                <!-- Add more subjects as needed -->
+            </select>
+            <button type="submit">Filter</button>
+        </form>
+
         <div class="box-container">
             <?php
-            $select_courses = $conn->prepare("SELECT * FROM `materials`");
-            $select_courses->execute();
             if ($select_courses->rowCount() > 0) {
                 while ($fetch_course = $select_courses->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="box">';

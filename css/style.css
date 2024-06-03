@@ -455,6 +455,12 @@ section {
 }
 
 /* material page */
+
+
+
+
+
+
 .material .box-container {
 
     grid-template-columns: repeat(auto-fit, 27.5rem);
