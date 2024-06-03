@@ -21,6 +21,10 @@ if (isset($message)) {
 $selected_grade = isset($_POST['grade']) ? $_POST['grade'] : '';
 $selected_subject = isset($_POST['subject']) ? $_POST['subject'] : '';
 
+
+// to filter the file from material
+
+
 $query = "SELECT * FROM `materials` WHERE 1";
 $params = [];
 
@@ -29,11 +33,6 @@ if ($selected_grade != '') {
     $params[] = $selected_grade;
 }
 
-
-if ($selected_subject != '') {
-    $query .= " AND name LIKE ?";
-    $params[] = $selected_subject . '%';
-}
 if ($selected_subject != '') {
     $query .= " AND name = ?";
     $params[] = $selected_subject;
@@ -56,7 +55,7 @@ $select_courses->execute($params);
     <style>
     .filter-form {
         display: flex;
-        justify-content: center;
+        justify-content: right;
         margin-bottom: 20px;
         gap: 10px;
     }
