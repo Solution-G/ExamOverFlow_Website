@@ -112,9 +112,9 @@ if(isset($message)){
         <div class="box-container">
 
             <div class="box">
-                <h3>welcome!</h3>
+                <h3>Add materials here </h3>
                 <p><?= $fetch_profile['name']; ?></p>
-                <a href="Admin_feedback.php" class="btn">view profile</a>
+                <a href="Admin_material.php" class="btn">view profile</a>
             </div>
         </div>
         <div class="box-container">
