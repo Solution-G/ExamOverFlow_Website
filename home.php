@@ -53,7 +53,7 @@ if(isset($message)){
 
         <section class="flex">
 
-            <a href="home.html" class="logo1">
+            <a href="home.php" class="logo1">
 
                 <img class="logo-img" src="./images/icons/logo.jpg" alt="Exam Overflow">
                 <span class="logo">Exam Overflow</span>
@@ -101,7 +101,7 @@ if(isset($message)){
         <nav class="navbar">
 
             <a href="about.php"><i class="fas fa-question"></i><span>about</span></a>
-            <a href="contact.php"><i class="fas fa-headset"></i><span>contact</span></a>
+            <a href="feedback.php"><i class="fa-regular fa-comment"></i><span>feedback</span></a>
             <a href="login.php"><i class="fa-solid fa-right-from-bracket"></i> </i><span>Log out</span></a>
         </nav>
 

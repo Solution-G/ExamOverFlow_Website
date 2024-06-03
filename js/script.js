@@ -13,6 +13,7 @@ const disableDarkMode = () => {
     body.classList.remove('dark');
     localStorage.setItem('dark-mode', 'disabled');
 }
+
 // for the main page
 const toggleBtn1 = document.getElementById('toggle-btn');
 const bigText = document.querySelector('.big-text');
@@ -37,26 +38,29 @@ toggleBtn.onclick = (e) => {
 }
 
 let profile = document.querySelector('.header .flex .profile');
-
-
-
 let search = document.querySelector('.header .flex .search-form');
+let sideBar = document.querySelector('.side-bar');
 
 document.querySelector('#search-btn').onclick = () => {
     search.classList.toggle('active');
     profile.classList.remove('active');
 }
 
-let sideBar = document.querySelector('.side-bar');
 
-document.querySelector('#menu-btn').onclick = () => {
-    sideBar.classList.toggle('active');
-    body.classList.toggle('active');
-}
+// ensure the side bar is initially inactive
+sideBar.classList.remove('active');
+body.classList.remove('active');
+
+
 
 document.querySelector('#close-btn').onclick = () => {
     sideBar.classList.remove('active');
     body.classList.remove('active');
+}
+
+document.querySelector('#menu-btn').onclick = () => {
+    sideBar.classList.toggle('active');
+    body.classList.toggle('active');
 }
 
 window.onscroll = () => {
@@ -64,7 +68,6 @@ window.onscroll = () => {
     search.classList.remove('active');
 
     if (window.innerWidth < 1200) {
-
         sideBar.classList.remove('active');
         body.classList.remove('active');
     }

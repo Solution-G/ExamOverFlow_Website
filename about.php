@@ -1,9 +1,30 @@
 <?php
+include 'db_connection.php';
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header('location:main_page.php');
     exit();
 }
+
+
+if(isset($_COOKIE['user_id'])){
+   $user_id = $_COOKIE['user_id'];
+}else{
+   $user_id = '';
+}
+
+
+if(isset($message)){
+   foreach($message as $message){
+      echo '
+      <div class="message">
+         <span>'.$message.'</span>
+         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+      </div>
+      ';
+   }
+}
+
 ?>
 
 
@@ -30,7 +51,7 @@ if (!isset($_SESSION['user_id'])) {
 
         <section class="flex">
 
-            <a href="home.html" class="logo1">
+            <a href="home.php" class="logo1">
 
                 <img class="logo-img" src="./images/icons/logo.jpg" alt="Exam Overflow">
                 <span class="logo">Exam Overflow</span>
@@ -59,17 +80,26 @@ if (!isset($_SESSION['user_id'])) {
         </div>
 
         <div class="profile">
-            <img src="images/pic-1.jpg" class="image" alt="">
-            <h3 class="name">Akrem</h3>
-            <p class="role">student</p>
+            <?php
+            $select_profile = $conn->prepare("SELECT * FROM `users` WHERE id = ?");
+            $select_profile->execute([$user_id]);
+            if($select_profile->rowCount() > 0){
+            $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
+         ?>
+            <img src="uploaded_files/<?= $fetch_profile['image']; ?>" class="image" alt="">
+            <h3 class="name"><?= $fetch_profile['name']; ?></h3>
+            <p class="role ">student </p>
             <a href="profile.php" class="btn">view profile</a>
+            <?php
+            }
+         ?>
 
         </div>
 
         <nav class="navbar">
 
             <a href="about.php"><i class="fas fa-question"></i><span>about</span></a>
-            <a href="contact.php"><i class="fas fa-headset"></i><span>contact</span></a>
+            <a href="feedback.php"><i class="fa-regular fa-comment"></i><span>feedback</span></a>
             <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> </i><span>Log out</span></a>
         </nav>
 
@@ -128,7 +158,52 @@ if (!isset($_SESSION['user_id'])) {
         </div>
 
     </section>
+    <section class="contact">
 
+        <div class="row">
+
+            <div class="image">
+                <img src="images/contact-img.svg" alt="">
+            </div>
+
+            <form action="" method="post">
+                <h3>get in touch</h3>
+                <input type="text" placeholder="enter your name" name="name" required maxlength="50" class="box">
+                <input type="email" placeholder="enter your email" name="email" required maxlength="50" class="box">
+                <input type="number" placeholder="enter your number" name="number" required maxlength="50" class="box">
+                <textarea name="msg" class="box" placeholder="enter your message" required maxlength="1000" cols="30"
+                    rows="10"></textarea>
+                <input type="submit" value="send message" class="inline-btn" name="submit">
+            </form>
+
+        </div>
+
+        <div class="box-container">
+
+            <div class="box">
+                <i class="fas fa-phone"></i>
+                <h3>phone number</h3>
+                <a href="tel:0972723807">0972723807</a>
+                <a href="tel:111222">111-222</a>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-envelope"></i>
+                <h3>email address</h3>
+                <a href="mailto:SolutionTeam@gmail.com">
+                    SolutionTeam@gmail.come</a>
+                <a href="mailto:SolutionTeam1@gmail.com">SolutionTeam1@gmail.come</a>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>office address</h3>
+                <a href="#">Adama science and technology University(ASTU) , Adama , Ethiopia</a>
+            </div>
+
+        </div>
+
+    </section>
 
     <footer class="footer">
 

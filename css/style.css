@@ -539,6 +539,8 @@ section {
     gap: 1.5rem;
     justify-content: center;
     align-items: flex-start;
+    margin-bottom: 5;
+
 }
 
 .home-grid .box-container .box {
@@ -548,6 +550,13 @@ section {
 }
 
 .home-grid .box-container .box .title {
+    font-size: 2rem;
+    color: var(--black);
+    text-transform: capitalize;
+}
+
+.home-grid .box-container .box h3,
+p {
     font-size: 2rem;
     color: var(--black);
     text-transform: capitalize;
@@ -750,7 +759,20 @@ section {
     color: var(--light-color);
 }
 
+/* feedback header */
+
+.contact .title {
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+    color: var(--black);
+    font-size: 2.5rem;
+    margin-bottom: 2em;
+}
+
+
 /* contact style */
+
+
 
 .contact .row {
     display: flex;
@@ -835,6 +857,96 @@ section {
     text-decoration: underline;
     color: var(--black);
 }
+
+/* fedback  */
+
+
+
+.feedback .row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.feedback .row .image {
+    flex: 1 1 50rem;
+}
+
+.feedback .row .image img {
+    width: 100%;
+}
+
+.feedback .row form {
+    flex: 1 1 30rem;
+    background-color: var(--white);
+    padding: 2rem;
+    text-align: center;
+}
+
+.feedback .row form h3 {
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+    color: var(--black);
+    font-size: 2.5rem;
+}
+
+.feedback .row form .box {
+    width: 100%;
+    border-radius: .5rem;
+    background-color: var(--light-bg);
+    margin: 1rem 0;
+    padding: 1.4rem;
+    font-size: 1.8rem;
+    color: var(--black);
+}
+
+.feedback .row form textarea {
+    height: 20rem;
+    resize: none;
+}
+
+.feedback .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 3rem;
+}
+
+.feedback .box-container .box {
+    text-align: center;
+    background-color: var(--white);
+    border-radius: .5rem;
+    padding: 3rem;
+}
+
+.feedback .box-container .box i {
+    font-size: 3rem;
+    color: var(--main-color);
+    margin-bottom: 1rem;
+}
+
+.feedback .box-container .box h3 {
+    font-size: 2rem;
+    color: var(--black);
+    margin: 1rem 0;
+}
+
+.feedback .box-container .box a {
+    display: block;
+    padding-top: .5rem;
+    font-size: 1.8rem;
+    color: var(--light-color);
+}
+
+.feedback .box-container .box a:hover {
+    text-decoration: underline;
+    color: var(--black);
+}
+
+
 
 
 .form-container {

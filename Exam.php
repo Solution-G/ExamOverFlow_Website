@@ -1,11 +1,31 @@
 <?php
+include 'db_connection.php';
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header('location:main_page.php');
     exit();
 }
-?>
 
+
+if(isset($_COOKIE['user_id'])){
+   $user_id = $_COOKIE['user_id'];
+}else{
+   $user_id = '';
+}
+
+
+if(isset($message)){
+   foreach($message as $message){
+      echo '
+      <div class="message">
+         <span>'.$message.'</span>
+         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+      </div>
+      ';
+   }
+}
+
+?>
 
 
 <!DOCTYPE html>
@@ -29,7 +49,7 @@ if (!isset($_SESSION['user_id'])) {
 
         <section class="flex">
 
-            <a href="home.html" class="logo1">
+            <a href="home.php" class="logo1">
 
                 <img class="logo-img" src="./images/icons/logo.jpg" alt="Exam Overflow">
                 <span class="logo">Exam Overflow</span>
@@ -58,17 +78,26 @@ if (!isset($_SESSION['user_id'])) {
         </div>
 
         <div class="profile">
-            <img src="images/pic-1.jpg" class="image" alt="">
-            <h3 class="name">Akrem</h3>
-            <p class="role">student</p>
+            <?php
+            $select_profile = $conn->prepare("SELECT * FROM `users` WHERE id = ?");
+            $select_profile->execute([$user_id]);
+            if($select_profile->rowCount() > 0){
+            $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
+         ?>
+            <img src="uploaded_files/<?= $fetch_profile['image']; ?>" class="image" alt="">
+            <h3 class="name"><?= $fetch_profile['name']; ?></h3>
+            <p class="role ">student </p>
             <a href="profile.php" class="btn">view profile</a>
+            <?php
+            }
+         ?>
 
         </div>
 
         <nav class="navbar">
 
             <a href="about.php"><i class="fas fa-question"></i><span>about</span></a>
-            <a href="contact.php"><i class="fas fa-headset"></i><span>contact</span></a>
+            <a href="feedback.php"><i class="fa-regular fa-comment"></i><span>feedback</span></a>
             <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> </i><span>Log out</span></a>
         </nav>
 
@@ -174,7 +203,6 @@ if (!isset($_SESSION['user_id'])) {
             <div class="box">
                 <h3 class="title">Biology</h3>
                 <p class="tutor">Grade 11</p>
-                <p class="tutor1">barr</p>
 
             </div>
 
