@@ -7,31 +7,22 @@ if(isset($_COOKIE['admin_id'])){
    $admin_id = '';
    header('location:Admin_login.php');
 }
-
-
-
-if (isset($_POST['submit'])) {
-    $course_name = filter_var($_POST['course_name'], FILTER_SANITIZE_STRING);
-    $grade = filter_var($_POST['grade'], FILTER_SANITIZE_STRING);
-    $file = $_FILES['file'];
-
-    $file_name = $file['name'];
-    $file_tmp_name = $file['tmp_name'];
-    $file_error = $file['error'];
-
-    if ($file_error === 0) {
-        $file_destination = '../uploaded_files/' . $file_name;
-        move_uploaded_file($file_tmp_name, $file_destination);
-
-        $insert_course = $conn->prepare("INSERT INTO materials (name, grade, file) VALUES (?, ?, ?)");
-        $insert_course->execute([$course_name, $grade, $file_name]);
-
-        $message[] = 'Course added successfully!';
+// Code to handle deletion of material
+if(isset($_POST['delete'])){
+    if(isset($_POST['material_id'])) {
+        $material_id = $_POST['material_id'];
+        $delete_material = $conn->prepare("DELETE FROM materials WHERE id = ?");
+        $delete_material->execute([$material_id]);
     } else {
-        $message[] = 'Failed to upload file!';
+        // Handle the case when material_id is not set
+        $message[] = 'Material ID is not set!';
     }
 }
 
+// Fetch existing materials
+$select_materials = $conn->prepare("SELECT * FROM materials");
+$select_materials->execute();
+$materials = $select_materials->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -41,12 +32,12 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Course</title>
+    <title>Admin Panel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body style="padding-left: 0;">
+<body>
     <?php
     if (isset($message)) {
         foreach ($message as $message) {
@@ -55,24 +46,77 @@ if (isset($_POST['submit'])) {
     }
     ?>
     <header class="header">
+
         <section class="flex">
-            <a href="dashboard.php" class="logo">Exam Overflow</a>
+
+            <a href="dashboard.php" class="logo">Admin.</a>
+
+            <form action="search_page.php" method="post" class="search-form">
+                <input type="text" name="search" placeholder="search here..." required maxlength="100">
+                <button type="submit" class="fas fa-search" name="search_btn"></button>
+            </form>
+
             <div class="icons">
+                <div id="menu-btn" class="fas fa-bars"></div>
+                <div id="search-btn" class="fas fa-search"></div>
                 <div id="toggle-btn" class="fas fa-sun"></div>
             </div>
+
         </section>
+
     </header>
-    <section class="form-container">
-        <form action="" method="post" enctype="multipart/form-data" class="add-course">
-            <h3>Add New Course</h3>
-            <p>Course Name <span>*</span></p>
-            <input type="text" name="course_name" placeholder="Enter course name" maxlength="100" required class="box">
-            <p>Grade <span>*</span></p>
-            <input type="text" name="grade" placeholder="Enter grade" maxlength="10" required class="box">
-            <p>Upload File <span>*</span></p>
-            <input type="file" name="file" required class="box">
-            <input type="submit" name="submit" value="Add Course" class="btn">
-        </form>
+
+
+    <!-- side bar section starts  -->
+
+    <div class="side-bar">
+
+        <div id="close-btn"><i class="fas fa-times"></i></div>
+
+        <div class="profile">
+            <?php
+            $select_profile = $conn->prepare("SELECT * FROM `admin` WHERE id = ?");
+            $select_profile->execute([$admin_id]);
+            if($select_profile->rowCount() > 0){
+            $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
+         ?>
+            <img src="../uploaded_files/<?= $fetch_profile['image']; ?>" class="image" alt="">
+            <h3 class="role">Admin</h3>
+            <h3 class="role "><?= $fetch_profile['name']; ?></h3>
+
+            <a href="profile.php" class="btn">view profile</a>
+            <?php
+            }
+         ?>
+        </div>
+
+        <nav class="navbar">
+            <a href="dashboard.php"><i class="fas fa-home"></i><span>home</span></a>
+            <a href="Admin_feedback.php"><i class="fa-solid fa-bars-staggered"></i><span>Feedback</span></a>
+            <a href="admin_logout.php"><i class="fas fa-graduation-cap"></i><span>logout</span></a>
+
+        </nav>
+
+    </div>
+    <section class="material">
+
+        <!-- Display existing materials with delete button -->
+        <div class="box-container">
+            <a href="Admin_add_material.php" class="btn"
+                style="  width:30%;  padding: 0 40px;  justify-content :center; margin-bottom: 20px; ">
+                Add material </a>
+            <h3 class="title">Existing Materials</h3>
+            <?php foreach ($materials as $material) { ?>
+            <div class="box">
+                <h3 class="title">Course Name: <?= $material['name'] ?></h3>
+                <p class="tutor">Grade: <?= $material['grade'] ?></p>
+                <form action="" method="post">
+                    <input type="hidden" name="material_id" value="<?= $material['id'] ?>">
+                    <button type="submit" name="delete" class="btn">Delete</button>
+                </form>
+            </div>
+            <?php } ?>
+        </div>
     </section>
     <script src="../js/script.js"></script>
 </body>

@@ -34,39 +34,6 @@ $feedbacks = $select_feedback->fetchAll(PDO::FETCH_ASSOC);
     <title>Admin Feedback</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
-    <style>
-    .feedback-list {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        padding: 20px;
-    }
-
-    .feedback-item {
-        border: 1px solid #ddd;
-        padding: 15px;
-        border-radius: 5px;
-        background: #f9f9f9;
-    }
-
-    .feedback-item p {
-        margin: 5px 0;
-    }
-
-    .delete-btn {
-        display: inline-block;
-        margin-top: 10px;
-        padding: 5px 10px;
-        background: #e74c3c;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 3px;
-    }
-
-    .delete-btn:hover {
-        background: #c0392b;
-    }
-    </style>
 </head>
 
 <body>
@@ -96,9 +63,7 @@ $feedbacks = $select_feedback->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="side-bar">
 
-        <div class="close-side-bar">
-            <i class="fas fa-times"></i>
-        </div>
+        <div id="close-btn"><i class="fas fa-times"></i></div>
 
         <div class="profile">
             <?php
@@ -131,7 +96,7 @@ $feedbacks = $select_feedback->fetchAll(PDO::FETCH_ASSOC);
         <div class="feedback-list">
             <?php if ($feedbacks): ?>
             <?php foreach ($feedbacks as $feedback): ?>
-            <div class="feedback-item">
+            <div class="feedback-item" style="color:#333;">
                 <p><strong>Name:</strong> <?= htmlspecialchars($feedback['name']); ?></p>
                 <p><strong>Email:</strong> <?= htmlspecialchars($feedback['email']); ?></p>
                 <p><strong>Message:</strong> <?= nl2br(htmlspecialchars($feedback['message'])); ?></p>

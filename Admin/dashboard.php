@@ -64,9 +64,7 @@ if(isset($message)){
 
     <div class="side-bar">
 
-        <div class="close-side-bar">
-            <i class="fas fa-times"></i>
-        </div>
+        <div id="close-btn"><i class="fas fa-times"></i></div>
 
         <div class="profile">
             <?php

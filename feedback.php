@@ -46,7 +46,7 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+    <title>Feedback</title>
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
@@ -119,8 +119,10 @@ if(isset($_POST['submit'])){
                 <input type="email" placeholder="enter your email" name="email" required maxlength="50" class="box">
                 <textarea name="msg" class="box" placeholder="enter your message" required maxlength="1000" cols="30"
                     rows="10"></textarea>
-                <input type="submit" value="send message" class="inline-btn" name="submit">
+                <input type="submit" value="send message" class="inline-btn" name="submit"
+                    onclick="return displayConfirmation();">
             </form>
+
         </div>
     </section>
 

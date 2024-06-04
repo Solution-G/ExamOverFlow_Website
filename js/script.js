@@ -76,3 +76,10 @@ window.onscroll = () => {
         profile.classList.remove('active');
     }
 }
+
+function displayConfirmation() {
+
+    var massage = "Feedback submitted successfully ";
+    alert(massage);
+    return false;
+}
