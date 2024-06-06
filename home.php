@@ -135,15 +135,7 @@ if(isset($message)){
                 <a href="material.php" class="inline-btn">material</a>
             </div>
 
-            <div class="box">
 
-                <div class="thumb">
-                    <img src="images/icons/photo_2024-05-20_10-22-50.jpg" alt="">
-
-                </div>
-
-                <a href="playlist.html" class="inline-btn">Study</a>
-            </div>
             <div class="box">
 
                 <div class="thumb">
@@ -169,7 +161,7 @@ if(isset($message)){
 
                 </div>
 
-                <a href="playlist.html" class="inline-btn">Question</a>
+                <a href="user_exams.php" class="inline-btn">Question</a>
             </div>
             <div class="box">
 

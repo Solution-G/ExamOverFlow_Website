@@ -98,6 +98,15 @@ VALUES (1, 'math', '12', 'ASTU E-Student.pdf'),
     (4, 'bio', '9', 'cb_console_runner.exe');
 -- --------------------------------------------------------
 --
+-- comment
+CREATE TABLE `comments` (
+    `id` varchar(20) NOT NULL,
+    `content_id` varchar(20) NOT NULL,
+    `user_id` varchar(20) NOT NULL,
+    `tutor_id` varchar(20) NOT NULL,
+    `comment` varchar(1000) NOT NULL,
+    `date` date NOT NULL DEFAULT current_timestamp()
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 -- Table structure for table `users`
 --
 CREATE TABLE `users` (
