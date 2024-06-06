@@ -196,7 +196,7 @@ if(isset($message)){
                 <h3 class="title">Biology</h3>
                 <p class="tutor">Grade 11</p>
 
-            </div>
+            </div>  
 
         </div>
         <div class="box-container">

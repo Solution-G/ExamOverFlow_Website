@@ -79,7 +79,7 @@ window.onscroll = () => {
 
 function displayConfirmation() {
 
-    var massage = "Feedback submitted successfully ";
+    var massage = "Feedback submitted succesfully ";
     alert(massage);
     return false;
 }

@@ -7,6 +7,8 @@ if(isset($_COOKIE['admin_id'])){
    $admin_id = '';
    header('location:Admin_login.php');
 }
+$count_feedback=$conn->query("SELECT COUNT(*) FROM feedback")->fetchColumn();
+$count_material=$conn->query("SELECT COUNT(*) FROM materials")->fetchColumn();
 
 if(isset($message)){
    foreach($message as $message){
@@ -99,31 +101,31 @@ if(isset($message)){
 
         <h1 class="heading">dashboard</h1>
 
-        <div class="box-container">
+        <div class="box-container" style="margin-bottom:15px;">
 
             <div class="box">
                 <h3>feedback</h3>
-                <p><?= $fetch_profile['name']; ?></p>
-                <a href="Admin_feedback.php" class="btn">view profile</a>
+                <p><?php echo "Total feedback is : $count_feedback"  ?></p>
+                <a href="Admin_feedback.php" class="btn">view Feedback</a>
             </div>
         </div>
-        <div class="box-container">
+        <div class="box-container" style="margin-bottom:15px;">
 
             <div class="box">
-                <h3>Add materials here </h3>
-                <p><?= $fetch_profile['name']; ?></p>
-                <a href="Admin_material.php" class="btn">view profile</a>
+                <h3>materials</h3>
+                <p><?php echo "Total Materials is : $count_material"  ?></p>
+                <a href="Admin_material.php" class="btn">Add materials here </a>
             </div>
         </div>
-        <div class="box-container">
+        <div class="box-container" style="margin-bottom:15px;">
 
             <div class="box">
-                <h3>welcome!</h3>
+                <h3>Exams</h3>
                 <p><?= $fetch_profile['name']; ?></p>
-                <a href="profile.php" class="btn">view profile</a>
+                <a href="Admin_exams.php" class="btn">view profile</a>
             </div>
         </div>
-        <div class="box-container">
+        <div class="box-container" style="margin-bottom:15px;">
 
             <div class="box">
                 <h3>welcome!</h3>
