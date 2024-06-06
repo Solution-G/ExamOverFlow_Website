@@ -28,10 +28,21 @@ $questions = $select_questions->fetchAll(PDO::FETCH_ASSOC);
         <div class="row-container">
             <?php foreach ($questions as $question) : ?>
             <div class="question-row">
-                <p><strong>Subject:</strong> <?= $question['subject']; ?></p>
+            <?php
+            $select_profile = $conn->prepare("SELECT * FROM `users` WHERE id = ?");
+            $select_profile->execute([$question['user_id']]);
+            if($select_profile->rowCount() > 0){
+            $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
+            ?>
+
+           <h1 class="title"><?=$fetch_profile['name']?></h1> 
+        <?php    
+        }
+            ?>
                 <p><strong>Topic:</strong> <?= $question['topic']; ?></p>
-                <p><strong>Description:</strong> <?= $question['description']; ?></p>
-                <a href="participate.php" class="answer-button">Answer</a>
+                <p ><?= $question['subject']; ?></p>
+
+                <a href="participate.php?" class="button">Answer</a>
             </div>
             <?php endforeach; ?>
         </div>

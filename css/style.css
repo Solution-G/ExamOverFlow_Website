@@ -1133,7 +1133,9 @@ p {
     color: var(--black);
     margin: 1rem 0;
 }
-
+.video-form form .error {
+    border: 1px solid red;
+}
 .video-form form textarea {
     height: 20rem;
     resize: none;
