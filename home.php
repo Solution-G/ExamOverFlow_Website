@@ -170,7 +170,9 @@ if(isset($message)){
 
                 </div>
 
+
                 <a href="solution.php" class="inline-btn">Solution</a>
+
             </div>
         </div>
 
