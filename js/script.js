@@ -83,3 +83,37 @@ function displayConfirmation() {
     alert(massage);
     return false;
 }
+
+function validateQuestion(){
+    let subject = document.querySelector('#subject');
+    let topic = document.querySelector('#topic');
+    let question = document.querySelector('#question');
+
+    if (!validateSubject(subject.value)){
+        subject.classList.add('error');
+        return false;
+    }else{
+        subject.classList.remove('error');
+    }
+}
+
+function validateSubject(subject){
+    my_subjects = ['chemistry', 'mathematics', 'biology', 'english', 'physics'];
+    if (my_subjects.indexOf(subject.toLowerCase()) === -1){
+        return false;
+    }
+    console.log("Here");
+    return true;
+}
+
+function nameValidator(name){
+
+}
+
+function passwordValidator(password){
+
+}
+
+function emailValidator(email){
+
+}

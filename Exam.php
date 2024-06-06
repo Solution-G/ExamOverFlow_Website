@@ -42,6 +42,8 @@ if(isset($message)){
     <!-- custom css file link  -->
     <link rel="stylesheet" href="css/style.css">
 
+
+
 </head>
 
 <body>
@@ -103,110 +105,47 @@ if(isset($message)){
 
     </div>
     <section class="material">
+        <?php
+            $query = "SELECT * FROM `exams`";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            
+            $values = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            shuffle($values);
+
+
+        ?>
+        <?php 
+            for ($i = 0; $i < 30; $i ++){
+        ?>
+
         <div class="box-container">
             <div class="box">
-                <h3 class="title">Mathematics</h3>
-                <p class="tutor">Grade 12</p>
-
+                <h2 class="title"><?=($i + 1) . " . "?><?= $values[$i]["question"]?> </h3>
+                <div class="choises">
+                    <?php
+                        $choises = explode("##", $values[$i]['choise']);
+                        for ($index =0;  $index < 4; $index ++ ){
+                            ?>
+                        <div class="side-by-side"><input type="radio" name="<?='index' . ($i + 1)?>" class="radio_btn" value="<?=$index?>"><p><?=$choises[$index]?></p></div>
+                        <?php 
+                        }
+                        ?>
+                </div>
+                <div class="info">
+                    <p><?=$values[$i]['subject']?></p>
+                </div>
             </div>
 
         </div>
-        <div class="box-container">
-            <div class="box">
-                <h3 class="title">Biology</h3>
-                <p class="tutor">Grade 11</p>
 
-            </div>
+        <?php
 
-        </div>
-        <div class="box-container">
-            <div class="box">
-                <h3 class="title">Biology</h3>
-                <p class="tutor">Grade 11</p>
+            }
+            ?>
 
-            </div>
+        <a class="btn">Finish</a>
 
-        </div>
-        <div class="box-container">
-            <div class="box">
-                <h3 class="title">Biology</h3>
-                <p class="tutor">Grade 11</p>
-
-            </div>
-
-        </div>
-        <div class="box-container">
-            <div class="box">
-                <h3 class="title">Biology</h3>
-                <p class="tutor">Grade 11</p>
-
-            </div>
-
-        </div>
-        <div class="box-container">
-            <div class="box">
-                <h3 class="title">Biology</h3>
-                <p class="tutor">Grade 11</p>
-
-            </div>
-
-        </div>
-        <div class="box-container">
-            <div class="box">
-                <h3 class="title">Biology</h3>
-                <p class="tutor">Grade 11</p>
-
-            </div>
-
-        </div>
-        <div class="box-container">
-            <div class="box">
-                <h3 class="title">Biology</h3>
-                <p class="tutor">Grade 11</p>
-
-            </div>
-
-        </div>
-        <div class="box-container">
-            <div class="box">
-                <h3 class="title">Biology</h3>
-                <p class="tutor">Grade 11</p>
-
-            </div>
-
-        </div>
-        <div class="box-container">
-            <div class="box">
-                <h3 class="title">Biology</h3>
-                <p class="tutor">Grade 11</p>
-
-            </div>
-
-        </div>
-        <div class="box-container">
-            <div class="box">
-                <h3 class="title">Biology</h3>
-                <p class="tutor">Grade 11</p>
-
-            </div>
-
-        </div>
-        <div class="box-container">
-            <div class="box">
-                <h3 class="title">Biology</h3>
-                <p class="tutor">Grade 11</p>
-
-            </div>  
-
-        </div>
-        <div class="box-container">
-            <div class="box">
-                <h3 class="title">Biology</h3>
-                <p class="tutor">Grade 11</p>
-
-            </div>
-
-        </div>
     </section>
     <footer class="footer">
 

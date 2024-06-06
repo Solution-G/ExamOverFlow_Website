@@ -108,18 +108,26 @@ $questions = $select_questions->fetchAll(PDO::FETCH_ASSOC);
 
     <section class="material">
         <h1 class="heading">Questions</h1>
-        <div class="box-container">
-            <div class="box">
-                <?php foreach ($questions as $question) : ?>
-                <h3 class="title">Subject: <?= $question['subject']; ?></h3>
-                <p>
-                    Topic: <?= $question['topic']; ?>
-                </p>
-                <p class="tutor">Question:</strong> <?= $question['description']; ?></p>
+        <div class="row-container">
+            <?php foreach ($questions as $question) : ?>
+            <div class="question-row">
+            <?php
+            $select_profile = $conn->prepare("SELECT * FROM `users` WHERE id = ?");
+            $select_profile->execute([$question['user_id']]);
+            if($select_profile->rowCount() > 0){
+            $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
+            ?>
 
-                <a href="participate.php" class="answer-button">Answer</a>
-                <?php endforeach; ?>
-            </div> <a style="text-decoration:none; justify-content:right;" href="ask_question.php">ask a question </a>
+           <h1 class="title"><?=$fetch_profile['name']?></h1> 
+        <?php    
+        }
+            ?>
+                <p><strong>Topic:</strong> <?= $question['topic']; ?></p>
+                <p ><?= $question['subject']; ?></p>
+
+                <a href="participate.php?" class="button">Answer</a>
+            </div>
+            <?php endforeach; ?>
         </div>
     </section>
 
