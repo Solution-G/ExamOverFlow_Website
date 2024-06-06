@@ -479,6 +479,21 @@ section {
     text-transform: capitalize;
 }
 
+
+.material .box-container .box input[type="radio"]{
+    padding: 10px;
+}
+.material .box-container .box .side-by-side{
+
+    display: flex;
+    justify-content: start;
+}
+.material .box-container .box .choises p{
+    margin: 10px;
+}
+.material .box-container .box .info{
+    text-align: end;
+}
 /* .material .box-container .box .flex {
     display: flex;
     flex-wrap: wrap;

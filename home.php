@@ -170,7 +170,7 @@ if(isset($message)){
 
                 </div>
 
-                <a href="playlist.html" class="inline-btn">Solution</a>
+                <a href="solution.php" class="inline-btn">Solution</a>
             </div>
         </div>
 

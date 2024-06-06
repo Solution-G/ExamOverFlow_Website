@@ -1,6 +1,6 @@
 <?php
 
-   $db_name = 'mysql:host=localhost;dbname=Exam_overflow';
+   $db_name = 'mysql:host=localhost;dbname=exam_overflow_web';
    $user_name = 'root';
    $user_password = '';
 

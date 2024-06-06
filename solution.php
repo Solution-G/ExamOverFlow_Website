@@ -111,40 +111,35 @@ if(isset($message)){
             $stmt->execute();
             
             $values = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            shuffle($values);
+            
 
 
         ?>
         <?php 
-            for ($i = 0; $i < 30; $i ++){
+            $count = 0;
+            foreach ($values as $value){
+                
         ?>
 
         <div class="box-container">
             <div class="box">
-                <h2 class="title"><?=($i + 1) . " . "?><?= $values[$i]["question"]?> </h3>
+                <h2 class="title"><?=($count + 1) . " . "?><?= $value["question"]?> </h3>
                 <div class="choises">
                     <?php
-                        $choises = explode("##", $values[$i]['choise']);
-                        for ($index =0;  $index < 4; $index ++ ){
-                            ?>
-                        <div class="side-by-side"><input type="radio" name="<?='index' . ($i + 1)?>" class="radio_btn" value="<?=$index?>"><p><?=$choises[$index]?></p></div>
-                        <?php 
-                        }
-                        ?>
-                </div>
-                <div class="info">
-                    <p><?=$values[$i]['subject']?></p>
+                        $choises = explode("##", $value['choise']);
+                    ?>
+                        <div class="side-by-side"><p>Answer: <?=$choises[ord($value['answer']) - ord('A')]?></p>
                 </div>
             </div>
 
         </div>
 
         <?php
-
+            $count ++;
             }
             ?>
 
-        <a class="btn">Finish</a>
+
 
     </section>
     <footer class="footer">
