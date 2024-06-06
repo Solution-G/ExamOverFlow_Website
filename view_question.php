@@ -1,5 +1,6 @@
 <?php
 include 'db_connection.php';
+
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header('location:main_page.php');
@@ -25,8 +26,12 @@ if(isset($message)){
    }
 }
 
-?>
 
+// Fetch all questions from the database
+$select_questions = $conn->prepare("SELECT * FROM `questions`");
+$select_questions->execute();
+$questions = $select_questions->fetchAll(PDO::FETCH_ASSOC);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,20 +40,14 @@ if(isset($message)){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home</title>
-
+    <title>Questions</title>
     <!-- font awesome cdn link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <!-- custom css file link  -->
     <link rel="stylesheet" href="css/style.css">
-
-
 </head>
 
 <body>
-
-
     <header class="header">
 
         <section class="flex">
@@ -106,75 +105,24 @@ if(isset($message)){
         </nav>
 
     </div>
-    <section class="home-grid">
+
+    <section class="material">
+        <h1 class="heading">Questions</h1>
         <div class="box-container">
             <div class="box">
-                <h3 class="title">Daily Quote</h3>
-                <p class="tutor">Believe in yourself and all that you are. Know that there is something inside you that
-                    is greater than any obstacle.</p>
+                <?php foreach ($questions as $question) : ?>
+                <h3 class="title">Subject: <?= $question['subject']; ?></h3>
+                <p>
+                    Topic: <?= $question['topic']; ?>
+                </p>
+                <p class="tutor">Question:</strong> <?= $question['description']; ?></p>
 
-            </div>
-
+                <a href="participate.php" class="answer-button">Answer</a>
+                <?php endforeach; ?>
+            </div> <a style="text-decoration:none; justify-content:right;" href="ask_question.php">ask a question </a>
         </div>
-
     </section>
 
-    <section class="courses">
-
-
-
-        <div class="box-container">
-
-            <div class="box">
-
-                <div class="thumb">
-                    <img src="images/icons/photo_2024-05-20_10-22-48.jpg" alt="">
-
-                </div>
-
-                <a href="material.php" class="inline-btn">material</a>
-            </div>
-
-
-            <div class="box">
-
-                <div class="thumb">
-                    <img src="images/icons/photo_2024-05-20_10-22-52.jpg" alt="">
-
-                </div>
-
-                <a href="Exam.php" class="inline-btn">Exam</a>
-            </div>
-            <div class="box">
-
-                <div class="thumb">
-                    <img src="images/icons/photo_2024-05-20_10-22-47.jpg" alt="">
-
-                </div>
-
-                <a href="playlist.html" class="inline-btn">Progress</a>
-            </div>
-            <div class="box">
-
-                <div class="thumb">
-                    <img src="images/icons/photo_2024-05-20_10-22-50 (2).jpg" alt="">
-
-                </div>
-
-                <a href="view_question.php" class="inline-btn">Question</a>
-            </div>
-            <div class="box">
-
-                <div class="thumb">
-                    <img src="images/icons/photo_2024-05-20_10-22-51.jpg" alt="">
-
-                </div>
-
-                <a href="user_exams.php" class="inline-btn">Solution</a>
-            </div>
-        </div>
-
-    </section>
     <footer class="footer">
 
         &copy; copyright @ 2024 by <span>Solution Team</span> | all rights reserved!
@@ -183,7 +131,6 @@ if(isset($message)){
 
     <!-- custom js file link  -->
     <script src="js/script.js"></script>
-
 
 </body>
 
