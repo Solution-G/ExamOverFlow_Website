@@ -161,7 +161,7 @@ if(isset($message)){
 
                 </div>
 
-                <a href="user_exams.php" class="inline-btn">Question</a>
+                <a href="view_question.php" class="inline-btn">Question</a>
             </div>
             <div class="box">
 
@@ -170,7 +170,9 @@ if(isset($message)){
 
                 </div>
 
+
                 <a href="solution.php" class="inline-btn">Solution</a>
+
             </div>
         </div>
 
